@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark text-gray-100 font-sans antialiased;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply bg-primary text-secondary hover:bg-opacity-90;
+  }
+  .btn-secondary {
+    @apply bg-secondary text-primary border border-primary hover:bg-opacity-90;
+  }
+  .input-field {
+    @apply w-full bg-card border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-primary text-white;
+  }
+  .card {
+    @apply bg-card rounded-xl p-6 shadow-lg border border-gray-800;
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #1f2937;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+  }
+}
+
+@media print {
+  @page {
+    margin: 0;
+    size: auto;
+  }
+  body {
+    margin: 1cm;
+  }
+  body * {
+    visibility: hidden;
+  }
+  #root {
+    visibility: hidden;
+  }
+  /* Specifically assume the report container will be targeted or make everything visible within the report container */
+  .printable-area,
+  .printable-area * {
+    visibility: visible;
+  }
+  .printable-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  /* Hide scrollbars/overflow */
+  body,
+  html {
+    overflow: visible !important;
+    height: auto !important;
+    background: white !important;
+  }
+}

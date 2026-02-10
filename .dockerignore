@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+.env
+.git
+.gitignore
+*.md
+.vscode
+dist
+build
+coverage
+.DS_Store
+*.log
+server/uploads/*
+!server/uploads/.gitkeep
