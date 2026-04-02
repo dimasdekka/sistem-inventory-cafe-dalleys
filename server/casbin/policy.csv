@@ -1,0 +1,62 @@
+p, Staff, /api/v1/auth/me, (GET)|(PATCH)
+p, Staff, /api/v1/auth/change-password, POST
+p, Staff, /api/v1/health, GET
+p, Staff, /api/v1/inventory/*, (GET)|(POST)
+
+g, Manager, Staff
+p, Manager, /api/v1/reports/*, GET
+
+p, Admin, /api/v1/users, (GET)|(POST)
+p, Admin, /api/v1/users/*, (GET)|(PUT)|(DELETE)
+
+p, Manager, /api/v1/categories, (GET)|(POST)
+p, Manager, /api/v1/categories/*, (GET)|(PUT)|(DELETE)
+p, Staff, /api/v1/categories, GET
+p, Staff, /api/v1/categories/*, GET
+
+p, Manager, /api/v1/locations, (GET)|(POST)
+p, Manager, /api/v1/locations/*, (GET)|(PUT)|(DELETE)
+p, Staff, /api/v1/locations, GET
+p, Staff, /api/v1/locations/*, GET
+
+p, Manager, /api/v1/units, (GET)|(POST)
+p, Manager, /api/v1/units/*, (GET)|(PUT)|(DELETE)
+p, Staff, /api/v1/units, GET
+p, Staff, /api/v1/units/*, GET
+
+p, Admin, /api/v1/settings, (GET)|(PUT)
+p, Admin, /api/v1/settings/*, (GET)|(PUT)
+p, Staff, /api/v1/settings, GET
+p, Staff, /api/v1/settings/*, GET
+
+p, Manager, /api/v1/products, (GET)|(POST)
+p, Manager, /api/v1/products/*, (GET)|(PUT)|(DELETE)
+p, Staff, /api/v1/products, GET
+p, Staff, /api/v1/products/*, GET
+
+p, Manager, /api/v1/inventory/stock-in, POST
+p, Manager, /api/v1/inventory/stock-out, POST
+p, Manager, /api/v1/inventory/transfer, POST
+p, Manager, /api/v1/inventory/adjustment, POST
+p, Manager, /api/v1/inventory/opname, POST
+
+p, Staff, /api/v1/inventory/summary, GET
+p, Staff, /api/v1/inventory/movements, GET
+
+p, Manager, /api/v1/suppliers, (GET)|(POST)
+p, Manager, /api/v1/suppliers/*, (GET)|(PUT)|(DELETE)
+p, Staff, /api/v1/suppliers, GET
+p, Staff, /api/v1/suppliers/*, GET
+
+p, Manager, /api/v1/purchase-orders, (GET)|(POST)
+p, Manager, /api/v1/purchase-orders/*, (GET)|(PUT)
+p, Staff, /api/v1/purchase-orders, GET
+p, Staff, /api/v1/purchase-orders/*, GET
+
+p, Manager, /api/v1/barcode/*, (GET)|(POST)
+p, Staff, /api/v1/barcode/*, (GET)|(POST)
+
+g, Admin, Manager
+
+p, Owner, /api/v1/*, (GET)|(POST)|(PUT)|(DELETE)|(PATCH)
+g, Owner, Admin

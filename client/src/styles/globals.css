@@ -1,0 +1,364 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Color Tokens ────────────────────────────────────────────── */
+:root {
+  --color-primary: #4f46e5;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #3b82f6;
+
+  --sidebar-width: 256px;
+  --navbar-height: 64px;
+}
+
+/* ── Base Styles ────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  h1 {
+    @apply text-2xl font-bold;
+  }
+  h2 {
+    @apply text-xl font-semibold;
+  }
+  h3 {
+    @apply text-lg font-semibold;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+/* ── Component Shortcuts ──────────────────────────────────────── */
+@layer components {
+  .card {
+    @apply bg-white rounded-xl border border-gray-200 shadow-sm;
+  }
+
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+
+  .input-base {
+    @apply w-full rounded-lg border border-gray-300 px-3 py-2 text-sm
+           text-gray-900 placeholder-gray-400
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+           disabled:bg-gray-50 disabled:cursor-not-allowed
+           transition-colors;
+  }
+
+  .btn-base {
+    @apply inline-flex items-center justify-center gap-2
+           font-medium rounded-lg transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed select-none;
+  }
+}
+
+/* ── Print Styles (Professional Document) ────────────────────── */
+@media print {
+  /* ── 1. Essentials ────────────────────────────────────────── */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: auto !important;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 10pt;
+    color: #1e293b;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 18mm 14mm 22mm 14mm;
+  }
+
+  /* ── 2. Hide UI chrome ────────────────────────────────────── */
+  aside,
+  header,
+  nav,
+  .toast-container,
+  [data-sidebar],
+  .print-hide {
+    display: none !important;
+  }
+
+  /* Tailwind print:hidden utility */
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* ── 3. Reset layout & Prevent Blank Tables ────────────────── */
+  body > div,
+  main,
+  [class*='pl-16'],
+  [class*='pl-64'],
+  [class*='pt-16'] {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .page-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* CRITICAL: Prevent Chrome from blanking out scrollable tab grids */
+  .overflow-hidden,
+  .overflow-x-auto,
+  .overflow-y-auto {
+    overflow: visible !important;
+  }
+
+  /* Make cards blend into the page purely as content sections */
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  /* ── 4. Professional Letterhead Header ───────────────────── */
+  .print-header {
+    display: block !important;
+    margin-bottom: 7mm;
+    padding-bottom: 5mm;
+  }
+
+  /* Accent bar above header */
+  .print-header::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: #4f46e5;
+    border-radius: 2px;
+    margin-bottom: 5mm;
+  }
+
+  .print-header__body {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8mm;
+  }
+
+  .print-header__company {
+    display: flex !important;
+    align-items: flex-start;
+    gap: 4mm;
+  }
+
+  .print-header__logo-box {
+    width: 12mm;
+    height: 12mm;
+    background: #4f46e5;
+    border-radius: 3mm;
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .print-header__company-name {
+    font-size: 13pt;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 1mm;
+    line-height: 1.2;
+  }
+
+  .print-header__company-sub {
+    font-size: 7.5pt;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .print-header__report-info {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .print-header__report-title {
+    font-size: 15pt;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 1.5mm;
+    line-height: 1.2;
+  }
+
+  .print-header__report-meta {
+    font-size: 8pt;
+    color: #64748b;
+    margin: 0 0 0.8mm;
+  }
+
+  .print-header__report-meta strong {
+    color: #334155;
+  }
+
+  /* Divider under header */
+  .print-header__divider {
+    display: block !important;
+    width: 100%;
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 5mm;
+    position: relative;
+  }
+
+  .print-header__divider::before {
+    content: '';
+    display: block;
+    width: 30mm;
+    height: 2px;
+    background: #4f46e5;
+    position: absolute;
+    top: -1.5px;
+    left: 0;
+  }
+
+  /* ── 5. Generic print-show utilities ────────────────────── */
+  .print-show,
+  .print\:block {
+    display: block !important;
+  }
+
+  /* ── 6. Cards ────────────────────────────────────────────── */
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 0 !important;
+    page-break-inside: avoid;
+  }
+
+  /* ── 7. Professional Table Styles ────────────────────────── */
+  table {
+    width: 100% !important;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin-bottom: 4mm;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  thead tr {
+    background-color: #1e293b !important;
+  }
+
+  th {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 6px 10px !important;
+    text-align: left;
+    border: none;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #f8fafc !important;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #ffffff !important;
+  }
+
+  td {
+    padding: 6px 10px !important;
+    border-bottom: 1px solid #e2e8f0;
+    color: #1e293b !important;
+    font-size: 9pt;
+    vertical-align: middle;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 2px solid #cbd5e1;
+  }
+
+  tfoot tr {
+    background: #f1f5f9 !important;
+    border-top: 2px solid #334155;
+  }
+
+  tfoot td {
+    font-weight: 600;
+    color: #0f172a !important;
+    padding: 7px 10px !important;
+  }
+
+  span[class*='bg-'] {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ── 8. Page-break helpers ────────────────────────────────── */
+  tr {
+    page-break-inside: avoid;
+  }
+
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  /* ── 9. Print Footer ─────────────────────────────────────── */
+  .print-footer {
+    display: block !important;
+    margin-top: 8mm;
+    padding-top: 4mm;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+  }
+
+  .print-footer__text {
+    font-size: 7.5pt;
+    color: #94a3b8;
+  }
+}

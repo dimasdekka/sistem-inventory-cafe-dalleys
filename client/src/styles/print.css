@@ -1,0 +1,45 @@
+/* ── Print Styles for Barcode Labels ──────────────────────────── */
+@media print {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 8pt;
+  }
+
+  /* Removed rigid body > *:not(.print-target) { display: none !important; } to allow normal reports printing */
+
+  /* Label sizes */
+  .label-50x30 {
+    width: 50mm;
+    height: 30mm;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  .label-40x25 {
+    width: 40mm;
+    height: 25mm;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  .label-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm;
+  }
+
+  /* Page margins for label sheets */
+  @page {
+    margin: 5mm;
+  }
+}

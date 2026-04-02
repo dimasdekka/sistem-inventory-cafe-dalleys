@@ -1,0 +1,24 @@
+import { useState, useEffect } from "react";
+
+export function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia(query).matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    const listener = (e: MediaQueryListEvent) => setMatches(e.matches);
+    mql.addEventListener("change", listener);
+    setMatches(mql.matches);
+    return () => mql.removeEventListener("change", listener);
+  }, [query]);
+
+  return matches;
+}
+
+// Convenience hooks
+export const useIsMobile = () => useMediaQuery("(max-width: 768px)");
+export const useIsTablet = () => useMediaQuery("(max-width: 1024px)");

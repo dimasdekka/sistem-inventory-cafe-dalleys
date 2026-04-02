@@ -1,0 +1,56 @@
+# ==========================================
+# Sistem-Inventory .gitignore
+# ==========================================
+
+# ---- Go ----
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.prof
+vendor/
+
+# ---- Go build / air / tmp ----
+server/tmp/
+server/tmp_server
+server/tmp_server.exe
+server/tmp_server.exe~
+server/main.exe
+tmp/
+
+# ---- Node / Frontend ----
+node_modules/
+client/node_modules/
+client/dist/
+client/*.tsbuildinfo
+client/tsconfig.tsbuildinfo
+client/tsconfig.node.tsbuildinfo
+client/vite.config.d.ts
+
+# ---- Environment / Secrets ----
+.env
+server/.env
+client/.env
+
+# ---- IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ---- Debug / Logs ----
+*.log
+build_result_log.txt
+tmp_test.js
+debug/
+*.pem
+
+# ---- OS ----
+desktop.ini
+ehthumbs.db
